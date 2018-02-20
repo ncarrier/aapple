@@ -28,6 +28,7 @@ image_sol = pygame.image.load("./resources/64/sol_64.jpg").convert()
 image_out = pygame.image.load("./resources/64/sortie_64.png").convert_alpha()
 image_heros = pygame.image.load("./resources/64/heros_64.png").convert_alpha()
 image_bravo = pygame.image.load("./resources/bravo.png").convert_alpha()
+image_ombre = pygame.image.load("./resources/ombre.png").convert_alpha()
 
 
 def affiche_labyrinthe(ecran, labyrinthe):
@@ -42,8 +43,10 @@ def affiche_labyrinthe(ecran, labyrinthe):
                 ecran.blit(image_out, (x * 64, y * 64))
 
 
-def affiche_heros(ecran, heros):
+def affiche_heros(ecran, heros, gagne):
     ecran.blit(image_heros, (heros[X] * 64, heros[Y] * 64))
+    if not gagne:
+        ecran.blit(image_ombre, (heros[X] * 64 - 640, heros[Y] * 64 - 640))
 
 
 def affiche_bravo(ecran):
@@ -58,7 +61,7 @@ gagne = False
 while boucle:
     horloge.tick(60)
     affiche_labyrinthe(ecran, labyrinthe)
-    affiche_heros(ecran, heros)
+    affiche_heros(ecran, heros, gagne)
     if gagne:
         affiche_bravo(ecran)
     for evenement in pygame.event.get():
