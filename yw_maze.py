@@ -2,6 +2,7 @@
 import pygame
 from pygame import locals as pl
 
+pygame.mixer.pre_init(32728, -16, 1, 512)
 pygame.init()
 
 X = 0
@@ -30,6 +31,11 @@ image_heros = pygame.image.load("./resources/64/heros_64.png").convert_alpha()
 image_bravo = pygame.image.load("./resources/bravo.png").convert_alpha()
 image_ombre = pygame.image.load("./resources/ombre.png").convert_alpha()
 
+son_pas = pygame.mixer.Sound("./resources/sons/pas.wav")
+son_kappa = pygame.mixer.Sound("./resources/sons/kappa.wav")
+
+pygame.mixer.music.load("./resources/musiques/dongeon.ogg")
+
 
 def affiche_labyrinthe(ecran, labyrinthe):
     for x in range(0, 10):
@@ -53,6 +59,7 @@ def affiche_bravo(ecran):
     ecran.blit(image_bravo, (0, 0))
 
 
+pygame.mixer.music.play()
 heros = [1, 1]
 boucle = True
 pause = False
@@ -64,34 +71,44 @@ while boucle:
     affiche_heros(ecran, heros, gagne)
     if gagne:
         affiche_bravo(ecran)
-    for evenement in pygame.event.get():
-        if evenement.type == pygame.QUIT:
-            boucle = False
-        elif evenement.type == pygame.KEYDOWN:
-            if not gagne:
-                if evenement.key == pygame.K_DOWN:
-                    heros[Y] += 1
-                    if labyrinthe[heros[Y]][heros[X]] == mur:
-                        heros[Y] -= 1
-                elif evenement.key == pygame.K_LEFT:
-                    heros[X] -= 1
-                    if labyrinthe[heros[Y]][heros[X]] == mur:
-                        heros[X] += 1
-                elif evenement.key == pygame.K_RIGHT:
-                    heros[X] += 1
-                    if labyrinthe[heros[Y]][heros[X]] == mur:
-                        heros[X] -= 1
-                elif evenement.key == pygame.K_UP:
+    evenement = pygame.event.wait()
+    if evenement.type == pygame.QUIT:
+        boucle = False
+    elif evenement.type == pygame.KEYDOWN:
+        if not gagne:
+            if evenement.key == pygame.K_DOWN:
+                heros[Y] += 1
+                if labyrinthe[heros[Y]][heros[X]] == mur:
                     heros[Y] -= 1
-                    if labyrinthe[heros[Y]][heros[X]] == mur:
-                        heros[Y] += 1
-                elif evenement.key == pygame.K_p:
-                    print("PAUSE !")
-                    pause = not pause
-                if labyrinthe[heros[Y]][heros[X]] == out:
-                    gagne = True
-            if evenement.key == pygame.K_ESCAPE:
-                boucle = False
+                else:
+                    son_pas.play()
+            elif evenement.key == pygame.K_LEFT:
+                heros[X] -= 1
+                if labyrinthe[heros[Y]][heros[X]] == mur:
+                    heros[X] += 1
+                else:
+                    son_pas.play()
+            elif evenement.key == pygame.K_RIGHT:
+                heros[X] += 1
+                if labyrinthe[heros[Y]][heros[X]] == mur:
+                    heros[X] -= 1
+                else:
+                    son_pas.play()
+            elif evenement.key == pygame.K_UP:
+                heros[Y] -= 1
+                if labyrinthe[heros[Y]][heros[X]] == mur:
+                    heros[Y] += 1
+                else:
+                    son_pas.play()
+            elif evenement.key == pygame.K_p:
+                print("PAUSE !")
+                pause = not pause
+            if labyrinthe[heros[Y]][heros[X]] == out:
+                gagne = True
+                son_kappa.play()
+                pygame.mixer.music.stop()
+        if evenement.key == pygame.K_ESCAPE:
+            boucle = False
     pygame.display.flip()
 
 pygame.quit()
