@@ -1,15 +1,13 @@
-﻿# Apprendre la programmation pour les enfants
-
-## Leçon 1
+# Séance 1
 
 ![logo de python](images/logo_python.png)
 
 Python est un **langage de programmation**, c'est un outil pour dire à un
 ordinateur, ce que l'on veut qu'il fasse.
-Par exemple, affiche ceci, effectue ce calcul, s'il ce produit un événement,
+Par exemple, affiche ceci, effectue ce calcul, s'il se produit un événement,
 alors effectue une action...
 
-### Afficher sur la console et les types
+## Afficher sur la console et les types
 
 Ouvre une console et lance **ipython**:
 
@@ -20,7 +18,7 @@ Tape `print("Hello world !")`:
     In [1]: print("Hello world !")
     Hello world !
 
-![ipython console](images/console.png)
+![console ipython](images/console.png)
 
 Ce qui est entre guillemets, " est appelé **string** ou
 **chaîne de caractères**.
@@ -38,7 +36,7 @@ Tape `print(2)`:
 python.
 Il en existe d'autres, que nous verrons petit à petit.
 
-### Variables, assignations, expressions
+## Variables, assignations, expressions
 
 Une **variable** sert à stocker une donnée, par exemple, d'un type primitif, à
 s'en souvenir, pour cela, on **assigne** une valeur à un nom :
@@ -62,7 +60,7 @@ Parce que **variable** stocke la valeur **12**.
 Essayer en stockant la chaîne de caractères `"Je m'appelle Anna"` dans
 `variable`.
 
-### Les mots que tu as appris
+## Les mots que tu as appris
 
 **langage de programmation**  
 **chaîne de caractères**  

@@ -1,6 +1,6 @@
-## Leçon 2
+# Séance 2
 
-### Les expressions
+## Les expressions
 
 Une **expression** peut-être par exemple, un calcul, addition, multiplication...
 
@@ -31,7 +31,7 @@ L'ordinateur sait faire les calculs **super vite** !
 Sais-tu calculer `127463200 + 551302122` de tête ? Non ?
 Alors demande à l'ordinateur de le faire !
 
-### Les mots que tu as appris
+## Les mots que tu as appris
 
 **expression**  
 **évaluation**  
